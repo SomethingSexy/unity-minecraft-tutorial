@@ -9,12 +9,15 @@ public class Player : MonoBehaviour {
     public float jumpForce = 250f;
 
     private Rigidbody2D body;
+    private Animator anim;
 
     private void Start() {
         // this will grab the RigidBody2D component that we added to the player game object in unity
         body = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
+    // called each frame
     private void Update() {
         UpdateControls();
         UpdateMovement();
@@ -26,10 +29,14 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(leftKey)) {
             // -1 is going to represent left;
             FaceDirection(-1);
+            anim.SetBool("isWalking", true);
         } else if (Input.GetKey(rightKey)) {
+            // right
             FaceDirection(1);
+            anim.SetBool("isWalking", true);
         } else {
             FaceDirection(0);
+            anim.SetBool("isWalking", false);
         }
 
         // jump controls
@@ -41,7 +48,10 @@ public class Player : MonoBehaviour {
 
     private void FaceDirection(int dir) {
         if (dir != direction) {
+            // set the direction if it hasn't changed
             direction = dir;
+
+            // now switch between sprites to animate the movement
             // this is steve facing front
             if (dir == 0) {
                 // given our tranform component on our gane object find a child gameobject 
