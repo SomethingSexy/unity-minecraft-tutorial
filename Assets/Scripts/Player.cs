@@ -25,11 +25,11 @@ public class Player : MonoBehaviour {
         // GetKey returns every frame while the key is held down
         if (Input.GetKey(leftKey)) {
             // -1 is going to represent left;
-            direction = -1;
+            FaceDirection(-1);
         } else if (Input.GetKey(rightKey)) {
-            direction = 1;
+            FaceDirection(1);
         } else {
-            direction = 0;
+            FaceDirection(0);
         }
 
         // jump controls
@@ -37,6 +37,26 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(jumpKey)) {
             Jump();
         }
+    }
+
+    private void FaceDirection(int dir) {
+        if (dir != direction) {
+            direction = dir;
+            // this is steve facing front
+            if (dir == 0) {
+                // given our tranform component on our gane object find a child gameobject 
+                // this will toggle to make sure we are using the front 
+                transform.FindChild("Side").gameObject.SetActive(false);
+                transform.FindChild("Front").gameObject.SetActive(true);
+            } else {
+                // this is steve facing side
+                transform.FindChild("Side").gameObject.SetActive(true);
+                transform.FindChild("Front").gameObject.SetActive(false);
+                // this will toggle the direction of the side from facing left or right using the same sprite automatically
+                transform.FindChild("Side").localScale = new Vector3(dir * -1, 1, 1);
+            }
+        }
+        
     }
 
     private void UpdateMovement() {
