@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
     private void Update() {
         UpdateControls();
         UpdateMovement();
+        UpdateBreaking();
     }
 
     private void UpdateControls() {
@@ -74,6 +75,25 @@ public class Player : MonoBehaviour {
         // when we move left and right we only want to move to the left and right, not up and down
         // moveSpeed * 1 = 3 which means go right, moveSpeed * -1 = -3 which means go left, zero means don't move
         body.velocity = new Vector2(moveSpeed * direction, body.velocity.y);
+    }
+
+    // check to see if we are going to break a block
+    private void UpdateBreaking() {
+        // 0 is the left mouse button
+        if (Input.GetMouseButtonDown(0)) {
+            // pixel coordinates of the mouse are different than the world position
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            // ray cast, will check between two positions and see if anything is blocking it
+            RaycastHit2D hit = Physics2D.Raycast(pos, transform.position);
+
+            // if there is a collider on the gameobject that is hit
+            if (hit.collider != null) {
+                if (hit.collider.gameObject.tag == "Block") {
+                    GameObject.Find("World").GetComponent<WorldGen>().DestroyBlock(hit.collider.gameObject);
+                }
+            }
+        }
     }
 
     private void Jump() {

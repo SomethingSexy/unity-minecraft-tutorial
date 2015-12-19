@@ -14,6 +14,16 @@ public class WorldGen : MonoBehaviour {
 
     private Block[,] blocks;
 
+    public void DestroyBlock(GameObject block) {
+        // Destroy reference in blocks array
+        int x = (int)block.transform.position.x;
+        int y = (int)block.transform.position.y;
+        // set to air block, which is basically just removing it
+        blocks[x, y] = blockManager.FindBlock(0);
+        // Destroy GameObject
+        GameObject.Destroy(block);
+    }
+
     private void Start() {
         blockManager = GameObject.Find("GameManager").GetComponent<BlockManager>();
         blocks = new Block[width, height];
@@ -82,6 +92,9 @@ public class WorldGen : MonoBehaviour {
 
                     // set the name of our game block to the name of our block for now
                     blockGO.name = block.displayName;
+
+                    // using tag to indicate that this is block
+                    blockGO.tag = "Block";
 
                     // add a sprite renderer component to our new game object
                     SpriteRenderer sr = blockGO.AddComponent<SpriteRenderer>();
