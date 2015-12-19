@@ -10,11 +10,13 @@ public class Player : MonoBehaviour {
 
     private Rigidbody2D body;
     private Animator anim;
+    private GUIManager guiManager;
 
     private void Start() {
         // this will grab the RigidBody2D component that we added to the player game object in unity
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
     }
 
     // called each frame
@@ -44,6 +46,15 @@ public class Player : MonoBehaviour {
         // GetKeyDown gets called once when you push it
         if (Input.GetKeyDown(jumpKey)) {
             Jump();
+        }
+
+        // Inventory
+        if (Input.GetKeyDown(KeyCode.E)) {
+            if (guiManager.isPlayerInventoryOpen) {
+                guiManager.ShowPlayerInventory(false);
+            } else {
+                guiManager.ShowPlayerInventory(true);
+            }
         }
     }
 
