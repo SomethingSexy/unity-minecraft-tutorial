@@ -107,7 +107,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 281407695}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d82387600efaad8418a8520d2413bf9f, type: 3}
   m_Name: 
@@ -122,6 +122,9 @@ MonoBehaviour:
   - displayName: Dirt
     id: 3
     sprite: {fileID: 21300000, guid: f2183263565ba794ca0877178c0f5380, type: 3}
+  - displayName: Yellow Flower
+    id: 4
+    sprite: {fileID: 21300000, guid: 747fca7c7a4f76444a98254880dd4915, type: 3}
 --- !u!4 &281407697
 Transform:
   m_ObjectHideFlags: 0

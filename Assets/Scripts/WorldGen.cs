@@ -33,12 +33,29 @@ public class WorldGen : MonoBehaviour {
             float pValue = Mathf.PerlinNoise(x * 0.05f, 5 * 0.05f);
             // how high the terrain is going to be for each row tile
             // the 10f changes how dramatic it is
-            float pHeight = pValue * 10f + heightModifier;
+            int pHeight = Mathf.RoundToInt(pValue * 10f + heightModifier);
             // cols
             for (int y = 0; y < height; y++) {
-                // given our random height, if y is less than it, generate stone
-                if (y < pHeight) {
-                    blocks[x, y] = blockManager.FindBlock(2);
+                // given our random height, if y is less than how high we want the column to be
+                if (y <= pHeight) {
+                    // this will grab the top level of the world we are generating
+                    if (y == pHeight - 1) {
+                        // grass
+                        blocks[x, y] = blockManager.FindBlock(1);
+                    } else if (y == pHeight) {
+                        // add flowers
+                        // if 1/20 (5% chance) of the blocks will have a flower.
+                        if(Random.value < 0.05f) {
+                            blocks[x, y] = blockManager.FindBlock(4);
+                        }
+                    } else if (y == pHeight - 2 || y == pHeight - 3 || y == pHeight - 4) {
+                        // add layers of dirt layers below grass
+                        blocks[x, y] = blockManager.FindBlock(3);
+                    } else {
+                        // stone
+                        blocks[x, y] = blockManager.FindBlock(2);
+                    }
+                    
                 } else {
                     // leave as air block
                     blocks[x, y] = blockManager.FindBlock(0);
@@ -60,8 +77,11 @@ public class WorldGen : MonoBehaviour {
                 // because we set air block to 0 and our FindBlock method ruturns null this works
                 // kind of hacky, fix later
                 if(block != null) {
-                    // create a new game object
+                    // create a new game object, similar to how you do it in unity but this how you do it in code
                     GameObject blockGO = new GameObject();
+
+                    // set the name of our game block to the name of our block for now
+                    blockGO.name = block.displayName;
 
                     // add a sprite renderer component to our new game object
                     SpriteRenderer sr = blockGO.AddComponent<SpriteRenderer>();
@@ -69,11 +89,10 @@ public class WorldGen : MonoBehaviour {
                     // grab the sprint from the block we are gonna render and set it
                     sr.sprite = block.sprite;
 
-                    // apparently this is all you need to add collisions to the tiles we are creating
-                    BoxCollider2D col = blockGO.AddComponent<BoxCollider2D>();
-
-                    // set the name of our game block to the name of our block for now
-                    blockGO.name = block.displayName;
+                    if(block.isSolid) {
+                        // apparently this is all you need to add collisions to the tiles we are creating
+                        BoxCollider2D col = blockGO.AddComponent<BoxCollider2D>();
+                    }
 
                     // set the position on the block to the position set in our block 2d array, this will appropriately render it
                     blockGO.transform.position = new Vector3(x, y);
