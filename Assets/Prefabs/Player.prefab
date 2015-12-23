@@ -47,9 +47,10 @@ GameObject:
   - 61: {fileID: 6175692}
   - 114: {fileID: 11420328}
   - 95: {fileID: 9558438}
+  - 114: {fileID: 11450128}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -598,6 +599,18 @@ MonoBehaviour:
   jumpKey: 32
   moveSpeed: 3
   jumpForce: 250
+--- !u!114 &11450128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1510d4665c5f784da8c4af7752249e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotCount: 36
 --- !u!124 &12484178
 Behaviour:
   m_ObjectHideFlags: 1
@@ -971,7 +984,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: slotCount
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110302}

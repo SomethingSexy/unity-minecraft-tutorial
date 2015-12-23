@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
 
     public int slotCount = 3 * 9;
 
     // represent each cell in the inventory
-    public List<ItemStack> itemStacks;
+    public ItemStack[] itemStacks;
 
     private ItemDatabase itemDatabase;
 
     private void Start() {
-        itemStacks = new List<ItemStack>();
+        itemStacks = new ItemStack[slotCount];
         itemDatabase = GameObject.Find("GameManager").GetComponent<ItemDatabase>();
     }
 
@@ -22,9 +21,10 @@ public class Inventory : MonoBehaviour {
         if (existingStack != null) {
             existingStack.stackSize += count;
         } else {
+            int availableSlot = FindFirstAvailableSlot();
             // make sure we can add another stack
-            if(itemStacks.Count < slotCount) {
-                itemStacks.Add(new ItemStack(itemDatabase.FindItem(name), count));
+            if (availableSlot >= 0) {
+                itemStacks[availableSlot] = new ItemStack(itemDatabase.FindItem(name), count);
             } else {
                 Debug.LogError("No more room in " + gameObject.name + "'s inventory for " + count + " " + name + "(s)");
             }
@@ -39,7 +39,8 @@ public class Inventory : MonoBehaviour {
             if (existingStack.stackSize - count >= 1) {
                 existingStack.stackSize -= count;
             } else {
-                itemStacks.Remove(existingStack);
+                // null out our reference
+                existingStack = null;
             }
             
         }
@@ -65,5 +66,17 @@ public class Inventory : MonoBehaviour {
         }
 
         return null;
+    }
+
+    private int FindFirstAvailableSlot() {
+        for (int i = 0; i <itemStacks.Length; i++) {
+            // check to see if we have a stack at this point in our inventory
+            if(itemStacks[i] == null) {
+                return i;
+            }
+        }
+
+        // everything is full
+        return -1;
     }
 }
