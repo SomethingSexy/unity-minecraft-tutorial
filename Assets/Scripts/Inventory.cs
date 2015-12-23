@@ -50,8 +50,10 @@ public class Inventory : MonoBehaviour {
 
     private ItemStack FindExistingStack(string name) {
         foreach (ItemStack i in itemStacks) {
-            if (i.item.name == name) {
-                return i;
+           if(i != null) {
+                if (i.item.name == name) {
+                    return i;
+                }
             }
         }
 
@@ -68,7 +70,6 @@ public class Inventory : MonoBehaviour {
                     return i;
                 }
             }
-
         }
 
         return null;

@@ -35,6 +35,9 @@ public class WorldGen : MonoBehaviour {
                 dropObject.AddComponent<Rigidbody2D>();
                 // in unity we added a layer to the player called "Drop" under layer 9, set that here
                 dropObject.layer = 9;
+
+                dropObject.AddComponent<Magnetism>().target = GameObject.FindWithTag("Player").transform;
+                dropObject.name = drop.itemName;
             }
         }
 
