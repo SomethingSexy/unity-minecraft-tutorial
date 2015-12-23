@@ -10,4 +10,6 @@ public class Block {
     public Sprite sprite;
 
     public bool isSolid = true;
+
+    public Drop[] drops;
 }

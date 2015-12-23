@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 467060}
   - 212: {fileID: 21231036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_arm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 92: {fileID: 9205004}
   - 124: {fileID: 12484178}
   - 81: {fileID: 8189428}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 114: {fileID: 11420328}
   - 95: {fileID: 9558438}
   - 114: {fileID: 11450128}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 462800}
   - 212: {fileID: 21200168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_arm_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 440088}
   - 212: {fileID: 21292176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - 4: {fileID: 472056}
   - 212: {fileID: 21206548}
   - 95: {fileID: 9545548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_body_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 409134}
   - 212: {fileID: 21214890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_leg_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 403902}
   - 212: {fileID: 21234860}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 493208}
   - 212: {fileID: 21237312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_arm_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 443428}
   - 212: {fileID: 21214922}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_leg_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 496228}
   - 212: {fileID: 21247342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_leg (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 479308}
   - 212: {fileID: 21245400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_body_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 425484}
   - 212: {fileID: 21268712}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_head_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 430998}
   - 212: {fileID: 21281874}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: steve_head_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 401746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0.019607844}
+  m_BackGroundColor: {r: 0.75686276, g: 0.9372549, b: 0.94509804, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -992,6 +992,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_BackGroundColor.r
+      value: 0.75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_BackGroundColor.g
+      value: 0.9372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_BackGroundColor.b
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_BackGroundColor.a
+      value: 0.019607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

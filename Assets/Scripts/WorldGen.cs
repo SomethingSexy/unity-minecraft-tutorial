@@ -14,18 +14,40 @@ public class WorldGen : MonoBehaviour {
 
     private Block[,] blocks;
 
+    private ItemDatabase itemDatabase;
+
     public void DestroyBlock(GameObject block) {
         // Destroy reference in blocks array
         int x = (int)block.transform.position.x;
         int y = (int)block.transform.position.y;
+
+        foreach(Drop drop in blocks[x,y].drops) {
+            if(drop.DropChanceSuccess()) {
+                // create drops
+                GameObject dropObject = new GameObject();
+                dropObject.transform.position = block.transform.position;
+                // set the scale to be slightly smaller than the block so it looks like it was dropped
+                dropObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                dropObject.AddComponent<SpriteRenderer>().sprite = itemDatabase.FindItem(drop.itemName).sprite;
+                // add a collider box around our dropped item
+                dropObject.AddComponent<PolygonCollider2D>();
+                // add physics to the box
+                dropObject.AddComponent<Rigidbody2D>();
+                // in unity we added a layer to the player called "Drop" under layer 9, set that here
+                dropObject.layer = 9;
+            }
+        }
+
         // set to air block, which is basically just removing it
         blocks[x, y] = blockManager.FindBlock(0);
+
         // Destroy GameObject
         GameObject.Destroy(block);
     }
 
     private void Start() {
         blockManager = GameObject.Find("GameManager").GetComponent<BlockManager>();
+        itemDatabase = GameObject.Find("GameManager").GetComponent<ItemDatabase>();
         blocks = new Block[width, height];
 
         GenerateBlocks();

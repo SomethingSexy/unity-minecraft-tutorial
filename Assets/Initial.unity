@@ -852,18 +852,26 @@ MonoBehaviour:
     id: 1
     sprite: {fileID: 21300000, guid: 2efce0b5bf3adb94982aef992b132984, type: 3}
     isSolid: 1
+    drops:
+    - itemName: Grass
+      dropChance: 0.5
   - displayName: Stone
     id: 2
     sprite: {fileID: 21300000, guid: d6a2889442d0dca438dfbec5891ecce0, type: 3}
     isSolid: 1
+    drops: []
   - displayName: Dirt
     id: 3
     sprite: {fileID: 21300000, guid: f2183263565ba794ca0877178c0f5380, type: 3}
     isSolid: 1
+    drops:
+    - itemName: Dirt
+      dropChance: 1
   - displayName: Yellow Flower
     id: 4
     sprite: {fileID: 21300000, guid: 747fca7c7a4f76444a98254880dd4915, type: 3}
     isSolid: 1
+    drops: []
 --- !u!4 &281407697
 Transform:
   m_ObjectHideFlags: 0
@@ -899,6 +907,12 @@ MonoBehaviour:
     maxStack: 1
   - name: Melon Slice
     sprite: {fileID: 21300000, guid: 9eedf6430faa0b14b80b639b32cf4337, type: 3}
+    maxStack: 64
+  - name: Grass
+    sprite: {fileID: 21300000, guid: 2efce0b5bf3adb94982aef992b132984, type: 3}
+    maxStack: 64
+  - name: Dirt
+    sprite: {fileID: 21300000, guid: f2183263565ba794ca0877178c0f5380, type: 3}
     maxStack: 64
 --- !u!224 &284770410 stripped
 RectTransform:
