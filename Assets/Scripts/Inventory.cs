@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour {
     private void Start() {
         itemStacks = new ItemStack[slotCount];
         itemDatabase = GameObject.Find("GameManager").GetComponent<ItemDatabase>();
+        itemStacks[4] = new ItemStack(itemDatabase.FindItem("Blaze Rod"), 23);
+        itemStacks[30] = new ItemStack(itemDatabase.FindItem("Diamond Axe"), 1);
     }
 
     public void AddItem(string name, int count) {
@@ -59,10 +61,14 @@ public class Inventory : MonoBehaviour {
     // Will find a stack with a count numnber available
     private ItemStack FindExistingStack(string name, int count) {
         foreach (ItemStack i in itemStacks) {
-            // if it is a match and if adding the count to the current stackSize is less than or equal to allowed, then return
-            if (i.item.name == name && (i.stackSize + count) <= i.item.maxStack) {
-                return i;
+            Debug.Log(i);
+            if (i != null) {
+                // if it is a match and if adding the count to the current stackSize is less than or equal to allowed, then return
+                if (i.item.name == name && (i.stackSize + count) <= i.item.maxStack) {
+                    return i;
+                }
             }
+
         }
 
         return null;
