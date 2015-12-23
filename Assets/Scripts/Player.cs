@@ -7,16 +7,23 @@ public class Player : MonoBehaviour {
     public KeyCode leftKey, rightKey, jumpKey;
     public float moveSpeed = 3f;
     public float jumpForce = 250f;
+    public LayerMask groundLayer;
+    public float groundCheckDistance = 0.07f;
 
+
+    // Component references
     private Rigidbody2D body;
     private Animator anim;
     private GUIManager guiManager;
+    private Transform groundCheck;
 
     private void Start() {
         // this will grab the RigidBody2D component that we added to the player game object in unity
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         guiManager = GameObject.Find("GUI").GetComponent<GUIManager>();
+        // grab the gameobject that was added to the player gameobject
+        groundCheck = transform.FindChild("GroundCheck");
     }
 
     // called each frame
@@ -24,6 +31,18 @@ public class Player : MonoBehaviour {
         UpdateControls();
         UpdateMovement();
         UpdateBreaking();
+
+        Debug.Log(IsGrounded());
+        // this will render our groundCheck raycast line to see where it is rendering
+        Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.red);
+    }
+
+    private bool IsGrounded() {
+        // going to perform raycase everytime we call this method
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+
+        // if it isn't null that means it hit the ground
+        return hit.collider != null;
     }
 
     private void UpdateControls() {
@@ -44,7 +63,8 @@ public class Player : MonoBehaviour {
 
         // jump controls
         // GetKeyDown gets called once when you push it
-        if (Input.GetKeyDown(jumpKey)) {
+        // if we pushed the jump key and we are grounded
+        if (Input.GetKeyDown(jumpKey) && IsGrounded()) {
             Jump();
         }
 

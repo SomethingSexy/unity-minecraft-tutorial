@@ -48,6 +48,8 @@ GameObject:
   - 114: {fileID: 11420328}
   - 95: {fileID: 9558438}
   - 114: {fileID: 11450128}
+  - 58: {fileID: 5837284}
+  - 58: {fileID: 5816192}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -65,6 +67,21 @@ GameObject:
   - 4: {fileID: 431100}
   m_Layer: 8
   m_Name: Front
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &121530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 410092}
+  m_Layer: 8
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +128,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 436332}
   - 61: {fileID: 6130728}
+  - 114: {fileID: 11449810}
   m_Layer: 0
   m_Name: DropCollider
   m_TagString: Untagged
@@ -320,6 +338,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 401746}
   m_RootOrder: 1
+--- !u!4 &410092
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03, y: -1.084, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 429330}
+  m_RootOrder: 4
 --- !u!4 &425484
 Transform:
   m_ObjectHideFlags: 1
@@ -339,13 +369,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 341.46808, y: 257.65424, z: 0}
+  m_LocalPosition: {x: 767.64825, y: 259.9154, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431100}
   - {fileID: 401746}
   - {fileID: 464732}
   - {fileID: 436332}
+  - {fileID: 410092}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &430998
@@ -549,6 +580,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &5816192
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110302}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.02038574, y: 0.6}
+  serializedVersion: 2
+  m_Radius: 0.39
+--- !u!58 &5837284
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110302}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.02038574, y: -0.701}
+  serializedVersion: 2
+  m_Radius: 0.39
 --- !u!61 &6130728
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -558,7 +617,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -574,9 +633,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.015515894, y: -0.083785534}
+  m_Offset: {x: 0.02166748, y: -0.048309326}
   serializedVersion: 2
-  m_Size: {x: 1.0062063, y: 1.9868107}
+  m_Size: {x: 0.762882, y: 1.1533562}
 --- !u!81 &8189428
 AudioListener:
   m_ObjectHideFlags: 1
@@ -642,6 +701,21 @@ MonoBehaviour:
   jumpKey: 32
   moveSpeed: 3
   jumpForce: 250
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294966527
+  groundCheckDistance: 0.07
+--- !u!114 &11449810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbcf3919cb067c4a8e23a688442d7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11450128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1055,6 +1129,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: groundCheckDistance
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: groundLayer.m_Bits
+      value: 4294966527
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
