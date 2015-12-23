@@ -2,6 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
+// stores information about an individual item
 public class Item {
     public string name;
     // icon
@@ -10,7 +11,9 @@ public class Item {
     public int maxStack = 64;
 }
 
+// represents a stack of items in your inventory
 public class ItemStack {
+    // 
     public Item item;
     public int stackSize;
 
